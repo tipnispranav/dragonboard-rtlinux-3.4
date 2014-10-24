@@ -57,12 +57,6 @@ void __cpuinit write_pen_release(int val)
 
 static DEFINE_RAW_SPINLOCK(boot_lock);
 
-static inline int get_core_count(void)
-{
-	/* 1 + the PART[1:0] field of MIDR */
-	return ((read_cpuid_id() >> 4) & 3) + 1;
-}
-
 void __cpuinit platform_secondary_init(unsigned int cpu)
 {
 	WARN_ON(msm_platform_secondary_init(cpu));
