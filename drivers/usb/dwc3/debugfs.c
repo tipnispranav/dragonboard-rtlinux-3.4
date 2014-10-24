@@ -813,7 +813,11 @@ static struct {
 } dbg_dwc3_data = {
 	.idx = 0,
 	.tty = 0,
+#ifndef CONFIG_PREEMPT_RT_FULL
 	.lck = __RW_LOCK_UNLOCKED(lck)
+#else
+	.lck = __RW_LOCK_UNLOCKED(dbg_dwc3_data.lck)
+#endif
 };
 
 /**
